@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { test } from "./action";
+import { aiResponse } from "./action";
 import type { IChatMessage } from "@/type";
 import ChatMessageArea from "./_component/chatMessageArea";
 import Spinner from "@/components/loading/Spinner";
@@ -21,7 +21,7 @@ export default function Home() {
     setChatMessages(newChatMessages);
     setContent("");
 
-    const rawText: string | null = await test(newChatMessages);
+    const rawText: string | null = await aiResponse(newChatMessages);
 
     if (rawText) {
       setChatMessages([
@@ -44,14 +44,22 @@ export default function Home() {
   return (
     <div className="relative flex h-screen w-screen flex-col">
       <div className="flex-grow overflow-y-auto pb-24">
-        <ChatMessageArea chatMessages={chatMessages} />
-        {!isLoading && (
-          <div className="flex gap-3 ml-8 items-center my-3">
-            <Spinner className="justify-start " />
-            <p className="animate-pulse items-center justify-center">
-              お待ちください...
-            </p>
+        {chatMessages.length === 0 ? (
+          <div className="border-2 bg-gray-200/80 m-12 rounded-2xl flex items-center justify-center p-10 text-3xl">
+            質問してみよう！！！
           </div>
+        ) : (
+          <>
+            <ChatMessageArea chatMessages={chatMessages} />
+            {!isLoading && (
+              <div className="flex gap-3 ml-8 items-center my-3">
+                <Spinner className="justify-start " />
+                <p className="animate-pulse items-center justify-center">
+                  お待ちください...
+                </p>
+              </div>
+            )}
+          </>
         )}
       </div>
 

@@ -7,7 +7,9 @@ const client = new OpenAI({
   baseURL: "http://localhost:11434/v1",
 });
 
-export async function test(messages: IChatMessage[]): Promise<string | null> {
+export async function aiResponse(
+  messages: IChatMessage[]
+): Promise<string | null> {
   if (!messages || messages.length === 0) {
     return null;
   }
