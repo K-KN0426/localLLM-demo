@@ -51,7 +51,7 @@ export default function Home() {
         ) : (
           <>
             <ChatMessageArea chatMessages={chatMessages} />
-            {!isLoading && (
+            {isLoading && (
               <div className="flex gap-3 ml-8 items-center my-3">
                 <Spinner className="justify-start " />
                 <p className="animate-pulse items-center justify-center">

@@ -15,9 +15,8 @@ export async function aiResponse(
   }
 
   const chatCompletion = await client.chat.completions.create({
-    // 受け取った会話履歴をそのまま渡す
     messages: messages,
-    model: "gemma3:4b", // お使いのモデル
+    model: "gemma3:4b",
   });
 
   return chatCompletion.choices[0].message.content;
