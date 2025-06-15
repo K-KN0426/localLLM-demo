@@ -1,10 +1,6 @@
 "use server";
 import OpenAI from "openai";
-
-interface IChatMessage {
-  role: "user" | "assistant";
-  content: string;
-}
+import type { IChatMessage } from "@/type";
 
 const client = new OpenAI({
   apiKey: "ollama",
